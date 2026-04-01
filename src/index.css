@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Surfaces — deep ink base */
+  --chrome: #0c1017;
+  --chrome-raised: #131820;
+  --chrome-hover: #1a2030;
+  --chrome-active: #222a3a;
+  --canvas-bg: #2a2d35;
+  --page-white: #ffffff;
+
+  /* Text */
+  --text-hi: #e8eaed;
+  --text-mid: #8892a2;
+  --text-lo: #515c6e;
+
+  /* Accent — signal orange */
+  --accent: #e8642c;
+  --accent-soft: rgba(232, 100, 44, 0.12);
+  --accent-glow: rgba(232, 100, 44, 0.25);
+
+  /* Active — electric blue */
+  --active: #4d8eff;
+  --active-soft: rgba(77, 142, 255, 0.14);
+
+  /* Lines */
+  --line: rgba(255, 255, 255, 0.06);
+  --line-strong: rgba(255, 255, 255, 0.1);
+
+  /* Type */
+  --font-ui: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+
+  /* Radius */
+  --r-sm: 3px;
+  --r-md: 5px;
+  --r-lg: 8px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--chrome);
+  color: var(--text-hi);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100vh;
+}
+
+button { font-family: var(--font-ui); cursor: pointer; }
+input { font-family: var(--font-mono); }
+input[type="file"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-lo); }
+
+:focus-visible { outline: 1.5px solid var(--active); outline-offset: 1px; }
+
+/* Subtle noise overlay for canvas */
+.canvas-area {
+  position: relative;
+  background: var(--canvas-bg);
+}
+.canvas-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Tab underline animation */
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px 1px 0 0;
+}
