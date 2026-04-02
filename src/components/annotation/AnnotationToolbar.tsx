@@ -1,7 +1,8 @@
 import { useAnnotationStore } from "../../store/useAnnotationStore";
 import type { AnnotationTool } from "../../types/annotation";
+import type { ReactElement } from "react";
 
-const tools: { id: AnnotationTool; label: string; icon: JSX.Element }[] = [
+const tools: { id: AnnotationTool; label: string; icon: ReactElement }[] = [
   {
     id: "select",
     label: "Select (V)",
@@ -76,6 +77,47 @@ export function AnnotationToolbar() {
         border: "1px solid var(--line)",
       }}
     >
+      <button
+        onClick={() => {
+          if (window.confirm("Clear all annotations?")) {
+            useAnnotationStore.getState().clearAll();
+          }
+        }}
+        title="Reset all annotations"
+        style={{
+          height: 26,
+          padding: "0 8px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 4,
+          border: "none",
+          borderRadius: "var(--r-sm)",
+          background: "transparent",
+          color: "var(--text-lo)",
+          fontSize: 10,
+          fontWeight: 600,
+          fontFamily: "var(--font-mono)",
+          letterSpacing: "0.03em",
+          transition: "all 0.1s var(--ease)",
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "var(--chrome-hover)";
+          e.currentTarget.style.color = "var(--text-hi)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "transparent";
+          e.currentTarget.style.color = "var(--text-lo)";
+        }}
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 3h8M4.5 3V2h3v1M3 3v7a1 1 0 001 1h4a1 1 0 001-1V3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        RESET
+      </button>
+      <div style={{ width: 1, height: 16, background: "var(--line)", margin: "0 2px", flexShrink: 0 }} />
       {tools.map((t) => {
         const isActive = activeTool === t.id;
         return (

@@ -52,23 +52,24 @@ export function useAnnotationKeys(pageIndex: number, disabled: boolean) {
         store.getState().redo(pageIndex);
         return;
       }
-      // Duplicate
+      // Duplicate — only act if the selected shape belongs to this page
       if ((e.ctrlKey || e.metaKey) && e.key === "d") {
-        e.preventDefault();
         const sid = store.getState().selectedId;
         if (!sid) return;
         const shape = store.getState().getPageShapes(pageIndex).find((s) => s.id === sid);
         if (!shape) return;
+        e.preventDefault();
         const newShape = { ...shape, id: newShapeId(), x: shape.x + 20, y: shape.y + 20 } as AnnotationShape;
         store.getState().addShape(pageIndex, newShape);
         store.getState().setSelectedId(newShape.id);
         store.getState().pushHistory(pageIndex);
         return;
       }
-      // Delete
+      // Delete — only act if the selected shape belongs to this page
       if (e.key === "Delete" || e.key === "Backspace") {
         const sid = store.getState().selectedId;
-        if (sid) {
+        if (sid && store.getState().getPageShapes(pageIndex).some((s) => s.id === sid)) {
+          e.preventDefault();
           store.getState().removeShape(pageIndex, sid);
           store.getState().setSelectedId(null);
           store.getState().pushHistory(pageIndex);

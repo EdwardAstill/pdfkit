@@ -34,8 +34,6 @@ export async function applyTextEdits(
   for (const [pageIndex, pageEdits] of editsByPage) {
     if (pageIndex >= pages.length) continue;
     const page = pages[pageIndex];
-    const pageH = page.getHeight();
-
     for (const { item, edit } of pageEdits) {
       // White-out rectangle over original text
       // item.pdfY is the baseline, so the rect goes from baseline-descent to baseline+ascent

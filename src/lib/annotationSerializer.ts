@@ -42,7 +42,8 @@ function addAnnotation(
   shape: AnnotationShape,
   scale: number,
   pageH: number,
-  ctx: ReturnType<PDFDocument["context"]>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ctx: any,
 ) {
   const hasStroke = shape.stroke && shape.stroke !== "transparent";
   const hasFill = shape.fill && shape.fill !== "transparent";

@@ -1,5 +1,4 @@
 import { useRef, useEffect, useCallback } from "react";
-import type Konva from "konva";
 import { useAnnotationStore } from "../store/useAnnotationStore";
 import type { AnnotationShape } from "../types/annotation";
 

@@ -18,10 +18,13 @@ interface AnnotationStore {
   activeTool: AnnotationTool;
   style: AnnotationStyle;
   selectedId: string | null;
+  /** The actual display scale used by the viewer (fit-to-width) */
+  renderScale: number;
 
   setActiveTool: (tool: AnnotationTool) => void;
   setStyle: (style: Partial<AnnotationStyle>) => void;
   setSelectedId: (id: string | null) => void;
+  setRenderScale: (scale: number) => void;
 
   getPageShapes: (pageIndex: number) => AnnotationShape[];
   addShape: (pageIndex: number, shape: AnnotationShape) => void;
@@ -57,12 +60,14 @@ export const useAnnotationStore = create<AnnotationStore>((set, get) => ({
   activeTool: "select",
   style: { ...defaultStyle },
   selectedId: null,
+  renderScale: 2,
   _history: new Map(),
 
   setActiveTool: (tool) => set({ activeTool: tool, selectedId: null }),
   setStyle: (partial) =>
     set((state) => ({ style: { ...state.style, ...partial } })),
   setSelectedId: (id) => set({ selectedId: id }),
+  setRenderScale: (scale) => set({ renderScale: scale }),
 
   getPageShapes: (pageIndex) => get().annotations.get(pageIndex) ?? [],
 

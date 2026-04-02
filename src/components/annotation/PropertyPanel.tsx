@@ -116,6 +116,15 @@ const labelStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
+const FONTS = [
+  { value: "Helvetica", label: "Helvetica" },
+  { value: "Times-Roman", label: "Times" },
+  { value: "Courier", label: "Courier" },
+  { value: "Georgia", label: "Georgia" },
+  { value: "Arial", label: "Arial" },
+  { value: "Verdana", label: "Verdana" },
+];
+
 export function PropertyPanel() {
   const style = useAnnotationStore((s) => s.style);
   const setStyle = useAnnotationStore((s) => s.setStyle);
@@ -202,6 +211,31 @@ export function PropertyPanel() {
         max={72}
         step={2}
       />
+
+      {/* Font family */}
+      <select
+        value={style.fontFamily}
+        onChange={(e) => setStyle({ fontFamily: e.target.value })}
+        title="Font family"
+        style={{
+          height: 24,
+          padding: "0 4px",
+          fontSize: 11,
+          fontFamily: style.fontFamily,
+          border: "1px solid var(--line-strong)",
+          borderRadius: "var(--r-sm)",
+          background: "var(--chrome)",
+          color: "var(--text-hi)",
+          cursor: "pointer",
+          outline: "none",
+        }}
+      >
+        {FONTS.map((f) => (
+          <option key={f.value} value={f.value} style={{ fontFamily: f.value }}>
+            {f.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

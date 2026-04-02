@@ -4,7 +4,6 @@ import { useAnnotationStore } from "../../store/useAnnotationStore";
 import { useTextEditStore } from "../../store/useTextEditStore";
 import { exportWithAnnotations, type ExportMode } from "../../lib/pdfExport";
 import { downloadBytes } from "../../utils/download";
-import { RENDER_SCALE } from "../../hooks/usePdfRenderer";
 import type { TabId } from "./AppShell";
 
 interface Props {
@@ -29,10 +28,12 @@ export function Header({ activeTab, setActiveTab }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [exportMode, setExportMode] = useState<ExportMode>("annotate");
 
+  const renderScale = useAnnotationStore((s) => s.renderScale);
+
   const handleExport = async () => {
     if (!pdfBytes) return;
     const result = await exportWithAnnotations(
-      pdfBytes, annotations, RENDER_SCALE, exportMode, textEdits, textItems,
+      pdfBytes, annotations, renderScale, exportMode, textEdits, textItems,
     );
     const suffix = exportMode === "flatten" ? "_flattened" : "_annotated";
     downloadBytes(new Uint8Array(result), fileName.replace(".pdf", `${suffix}.pdf`));

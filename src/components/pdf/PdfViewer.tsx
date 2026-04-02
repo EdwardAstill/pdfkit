@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { usePdfStore } from "../../store/usePdfStore";
+import { useAnnotationStore } from "../../store/useAnnotationStore";
 import { PdfPage } from "./PdfPage";
 import type { TabId } from "../layout/AppShell";
 
@@ -25,6 +26,11 @@ export function PdfViewer({ activeTab }: { activeTab: TabId }) {
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, [pages]);
+
+  // Keep annotation store in sync with the actual display scale
+  useEffect(() => {
+    useAnnotationStore.getState().setRenderScale(fitScale);
+  }, [fitScale]);
 
   if (!pdfjsDoc) return null;
 

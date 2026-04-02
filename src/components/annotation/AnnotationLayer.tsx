@@ -81,7 +81,12 @@ export function AnnotationLayer({ pageIndex, width, height }: Props) {
 
   const finishTextEdit = useCallback(() => {
     if (!editingTextId) return;
-    store.getState().updateShape(pageIndex, editingTextId, { text: textEditValue } as Partial<AnnotationShape>);
+    if (textEditValue.trim() === "") {
+      // Remove empty text shapes instead of keeping blanks
+      store.getState().removeShape(pageIndex, editingTextId);
+    } else {
+      store.getState().updateShape(pageIndex, editingTextId, { text: textEditValue } as Partial<AnnotationShape>);
+    }
     store.getState().pushHistory(pageIndex);
     setEditingTextId(null);
   }, [editingTextId, textEditValue, pageIndex]);
@@ -119,7 +124,7 @@ export function AnnotationLayer({ pageIndex, width, height }: Props) {
             type: "text",
             x: pos.x,
             y: pos.y,
-            text: "Text",
+            text: "",
             fontSize: st.fontSize,
             fontFamily: st.fontFamily,
             stroke: st.strokeColor,
@@ -128,7 +133,18 @@ export function AnnotationLayer({ pageIndex, width, height }: Props) {
           });
           store.getState().pushHistory(pageIndex);
           store.getState().setSelectedId(id);
-          startTextEdit(id, pos.x, pos.y, st.fontSize, st.fontFamily, st.strokeColor, 200);
+          // Open editor directly — bypass startTextEdit's store lookup
+          // since we already know the shape details
+          setEditingTextId(id);
+          setTextEditValue("");
+          setTextEditPos({
+            x: pos.x,
+            y: pos.y,
+            fontSize: st.fontSize,
+            fontFamily: st.fontFamily,
+            color: st.strokeColor,
+            width: 200,
+          });
         }
         return;
       }
