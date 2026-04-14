@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "bin": {
-    "pdfkit": "./bin/pdfkit.ts"
+    "pdfkit": "./bin/pdfkit.ts",
+    "pk": "./bin/pk.ts"
   },
   "scripts": {
     "dev": "vite",
