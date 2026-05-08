@@ -1,0 +1,56 @@
+# Code Map
+
+- files: 45
+- symbols: 151
+- edges: 146
+- languages: javascript, typescript
+- last built: 2026-05-07T10:49:24+00:00
+
+## Top files (by PageRank)
+- `src/types/annotation.ts` [typescript, 67 loc, rank 0.0913, in 1 / out 0] — `<module>` (module), `AnnotationStyle` (class), `ArrowShape` (class), `BaseShape` (class), `EllipseShape` (class), `LineShape` (class), `RectShape` (class), `TextShape` (class)
+- `src/types/pdf.ts` [typescript, 22 loc, rank 0.0675, in 2 / out 0] — `<module>` (module), `PageInfo` (class), `PdfState` (class)
+- `src/store/usePdfStore.ts` [typescript, 73 loc, rank 0.0622, in 12 / out 3] — `<module>` (module), `PdfStore` (class), `usePdfStore` (constant)
+- `src/types/textEdit.ts` [typescript, 32 loc, rank 0.0563, in 8 / out 0] — `<module>` (module), `PdfTextItem` (class), `TextEdit` (class)
+- `src/lib/pdfLoader.ts` [typescript, 42 loc, rank 0.0460, in 3 / out 2] — `<module>` (module), `LoadedPdf` (class), `loadPdfFromBytes` (function), `loadPdfFromFile` (function)
+- `src/store/useAnnotationStore.ts` [typescript, 161 loc, rank 0.0428, in 8 / out 2] — `<module>` (module), `AnnotationStore` (class), `PageHistory` (class), `snapshotPage` (function), `useAnnotationStore` (constant)
+- `src/components/operations/Modal.tsx` [typescript, 111 loc, rank 0.0383, in 16 / out 0] — `<module>` (module), `Modal` (function), `Props` (class), `dialogBtn` (constant), `dialogInput` (constant), `dialogLabel` (constant)
+- `src/components/layout/AppShell.tsx` [typescript, 39 loc, rank 0.0362, in 1 / out 6] — `<module>` (module), `AppShell` (function)
+- `src/lib/pdfOperations.ts` [typescript, 172 loc, rank 0.0323, in 14 / out 0] — `<module>` (module), `combineDocuments` (function), `extractPages` (function), `getPdfInfo` (function), `imposeBooklet` (function), `imposeNup` (function), `rotatePages` (function), `splitDocument` (function)
+- `src/hooks/usePdfRenderer.ts` [typescript, 50 loc, rank 0.0291, in 2 / out 0] — `<module>` (module), `usePdfRenderer` (function)
+- `src/hooks/useFileHandler.ts` [typescript, 32 loc, rank 0.0243, in 1 / out 1] — `<module>` (module), `useFileHandler` (function)
+- `src/store/useTextEditStore.ts` [typescript, 61 loc, rank 0.0233, in 3 / out 2] — `<module>` (module), `TextEditStore` (class), `useTextEditStore` (constant)
+- `src/App.tsx` [typescript, 6 loc, rank 0.0199, in 1 / out 1] — `<module>` (module), `App` (function)
+- `src/utils/download.ts` [typescript, 12 loc, rank 0.0196, in 5 / out 0] — `<module>` (module), `downloadBytes` (function)
+- `src/components/pdf/PageThumbnail.tsx` [typescript, 80 loc, rank 0.0175, in 1 / out 1] — `<module>` (module), `PageThumbnail` (function), `Props` (class)
+- `src/hooks/useDrawing.ts` [typescript, 189 loc, rank 0.0164, in 4 / out 2] — `<module>` (module), `newShapeId` (function), `useDrawing` (function)
+- `src/components/layout/Header.tsx` [typescript, 182 loc, rank 0.0159, in 1 / out 5] — `<module>` (module), `Header` (function), `Props` (class)
+- `src/components/layout/ToolStrip.tsx` [typescript, 97 loc, rank 0.0159, in 1 / out 8] — `<module>` (module), `Chip` (function), `Props` (class), `ToolStrip` (function)
+- `src/components/pdf/DropZone.tsx` [typescript, 137 loc, rank 0.0159, in 1 / out 1] — `<module>` (module), `DropZone` (function)
+- `src/components/pdf/PageSidebar.tsx` [typescript, 51 loc, rank 0.0159, in 1 / out 2] — `<module>` (module), `PageSidebar` (function)
+- `src/components/pdf/PdfViewer.tsx` [typescript, 62 loc, rank 0.0159, in 1 / out 3] — `<module>` (module), `PdfViewer` (function)
+- `src/lib/annotationSerializer.ts` [typescript, 261 loc, rank 0.0149, in 5 / out 3] — `<module>` (module), `addAnnotation` (function), `drawAnnotationsOnPage` (function), `flattenAnnotationsOnPage` (function), `hexToRgbArray` (function)
+- `src/lib/pageRange.ts` [typescript, 27 loc, rank 0.0147, in 3 / out 0] — `<module>` (module), `parsePageRange` (function)
+- `src/lib/pdfExport.ts` [typescript, 47 loc, rank 0.0146, in 1 / out 5] — `<module>` (module), `exportWithAnnotations` (function)
+- `src/components/pdf/PdfPage.tsx` [typescript, 54 loc, rank 0.0141, in 1 / out 5] — `<module>` (module), `PdfPage` (function), `Props` (class)
+- `src/lib/textEditExport.ts` [typescript, 66 loc, rank 0.0128, in 1 / out 2] — `<module>` (module), `applyTextEdits` (function)
+- `src/components/annotation/AnnotationLayer.tsx` [typescript, 324 loc, rank 0.0125, in 1 / out 6] — `<module>` (module), `AnnotationLayer` (function), `Props` (class)
+- `src/components/pdf/TextOverlay.tsx` [typescript, 164 loc, rank 0.0125, in 1 / out 2] — `<module>` (module), `Props` (class), `TextItemOverlay` (function), `TextOverlay` (function)
+- `src/hooks/useTextExtract.ts` [typescript, 83 loc, rank 0.0125, in 1 / out 2] — `<module>` (module), `useTextExtract` (function)
+- `src/components/annotation/ShapeRenderer.tsx` [typescript, 131 loc, rank 0.0123, in 1 / out 0] — `<module>` (module), `Props` (class), `ShapeRenderer` (function)
+- `src/components/annotation/TextEditor.tsx` [typescript, 85 loc, rank 0.0123, in 1 / out 0] — `<module>` (module), `Props` (class), `TextEditor` (function)
+- `src/hooks/useAnnotationKeys.ts` [typescript, 83 loc, rank 0.0123, in 1 / out 2] — `<module>` (module), `useAnnotationKeys` (function)
+- `src/components/annotation/AnnotationToolbar.tsx` [typescript, 157 loc, rank 0.0123, in 1 / out 1] — `<module>` (module), `AnnotationToolbar` (function)
+- `src/components/annotation/PropertyPanel.tsx` [typescript, 242 loc, rank 0.0123, in 1 / out 1] — `<module>` (module), `NumStepper` (function), `PropertyPanel` (function)
+- `src/components/operations/CombinePanel.tsx` [typescript, 70 loc, rank 0.0123, in 1 / out 5] — `<module>` (module), `CombinePanel` (function), `Props` (class)
+- `src/components/operations/ExtractDialog.tsx` [typescript, 52 loc, rank 0.0123, in 1 / out 8] — `<module>` (module), `ExtractDialog` (function), `Props` (class)
+- `src/components/operations/ImposeDialog.tsx` [typescript, 265 loc, rank 0.0123, in 1 / out 6] — `<module>` (module), `BookletPreview` (function), `ImposeDialog` (function), `MiniPage` (function), `NupPreview` (function), `OrientationToggle` (function), `Props` (class)
+- `src/components/operations/InfoPanel.tsx` [typescript, 47 loc, rank 0.0123, in 1 / out 3] — `<module>` (module), `InfoPanel` (function), `Props` (class)
+- `src/components/operations/RotateControls.tsx` [typescript, 64 loc, rank 0.0123, in 1 / out 7] — `<module>` (module), `Props` (class), `RotateControls` (function)
+- `src/components/operations/SplitDialog.tsx` [typescript, 56 loc, rank 0.0123, in 1 / out 6] — `<module>` (module), `Props` (class), `SplitDialog` (function)
+- `bin/pdfkit.ts` [typescript, 53 loc, rank 0.0108, in 0 / out 0] — `<module>` (module), `fetch` (method)
+- `bin/pk.ts` [typescript, 201 loc, rank 0.0108, in 34 / out 42] — `<module>` (module), `cmdBooklet` (function), `cmdCombine` (function), `cmdCount` (function), `cmdExtract` (function), `cmdImpose` (function), `cmdInfo` (function), `cmdRotate` (function)
+- `eslint.config.js` [javascript, 24 loc, rank 0.0108, in 0 / out 0] — `<module>` (module)
+- `src/main.tsx` [typescript, 11 loc, rank 0.0108, in 0 / out 1] — `<module>` (module)
+- `vite.config.ts` [typescript, 8 loc, rank 0.0108, in 0 / out 0] — `<module>` (module)
+
+See `README.md` in this directory for the schema and the static-analysis blind-spot list.

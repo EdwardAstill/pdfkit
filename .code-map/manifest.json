@@ -1,0 +1,197 @@
+{
+  "files": {
+    "bin/pdfkit.ts": {
+      "content_hash": "0b809b9adba525e50f9236a75a62d21864697d696bbdd71d1e1502addbd00655",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "bin/pk.ts": {
+      "content_hash": "5a906ccb4f9cf416b2cce55862a622601cfcc6c27055dc8c3426574c2e7f387b",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "eslint.config.js": {
+      "content_hash": "4efe97b16d1200fac0eaf07aa00930a8668b1f96a0be1891ace8c1e712ff0ccb",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/App.tsx": {
+      "content_hash": "52e606cb6a2be2db01e3a4640a8cff8a289d3be565ee79e6aafabeda265d4809",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/annotation/AnnotationLayer.tsx": {
+      "content_hash": "9fd2af013aabfcd80356125d77abca2be1fc6013b1ed3152b789c14abcfbecd6",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/annotation/AnnotationToolbar.tsx": {
+      "content_hash": "7094243ba04c841217bd4a68379477d0bbda279b65ac2cbf9e8673af9a833444",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/annotation/PropertyPanel.tsx": {
+      "content_hash": "4f374a6cda618dc9de2ef80f5038cad2aab5793654bf2c1583f4058fd5064b92",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/annotation/ShapeRenderer.tsx": {
+      "content_hash": "1de2cdfaae9ef633ccedada56fd8eb74b5b5c7381e25cc3190c986c08a0ee38c",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/annotation/TextEditor.tsx": {
+      "content_hash": "df346e756bfabb8b0579da5958c31b8b633f0d0083fdbf54f74f7becb38ca1a8",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/layout/AppShell.tsx": {
+      "content_hash": "1ac8c61b4c2b1f56ae53795ca7f01914397c0a24912c9113e7e5439723ed0251",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/layout/Header.tsx": {
+      "content_hash": "12c7e76042bb5dc3d986e1cb3df4dfb7f2c37e6c000ff1720717015bda192f9f",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/layout/ToolStrip.tsx": {
+      "content_hash": "27b188f8a7f474469d82899ea25c14bb25b213e012e499f8583b96186980db16",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/CombinePanel.tsx": {
+      "content_hash": "22573435a4e858899c0601ebccb0f23502a5e089d32d31f0df49a1e0c36bdbf8",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/ExtractDialog.tsx": {
+      "content_hash": "445994d17f4937b32aea6669dff0cd40e6aaf98108e27790173819f888299355",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/ImposeDialog.tsx": {
+      "content_hash": "6addc729587836248597662060a2afcd9e86f5619032d0713376ca154b87e28a",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/InfoPanel.tsx": {
+      "content_hash": "0fe069e442c0685a403e94185aff137278c0466ee5b56f5d3e9d1486b50bd2f5",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/Modal.tsx": {
+      "content_hash": "91cfee1237f85f2c153e6e45a6f206bf7c6978c42324a34ad3ff2205fee231e1",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/RotateControls.tsx": {
+      "content_hash": "e3652a091126a62b6bea39bcb2367df2a7e5cda3327d34123987f24cbdbcb148",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/operations/SplitDialog.tsx": {
+      "content_hash": "0be60203de690a3ef58a5d41e70013e10a6378bb3dea3e6677b1093b10577009",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/DropZone.tsx": {
+      "content_hash": "54fcded88afb3ed504e7099126e1552ac8d623d1d71df74f3f576ccb2f532407",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/PageSidebar.tsx": {
+      "content_hash": "be0cdd39dbfcb70f1a468aaff007026e840299b228daca4dd10f23ef794eda66",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/PageThumbnail.tsx": {
+      "content_hash": "ad248d185b7752e863a06f0cf408891172935dc608836cae5c48768c4e77e64b",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/PdfPage.tsx": {
+      "content_hash": "059670fb6b8e084c530f166e0e7ae07fad98ada4ce81bf7ea1d02b7898fa4406",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/PdfViewer.tsx": {
+      "content_hash": "d333a43bd9c58b9bda051f07dba79fdbf3f647287d0a420ad9cb1a5a05473d1a",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/components/pdf/TextOverlay.tsx": {
+      "content_hash": "a55f1e3155f8231052ae5b312d951ca1b7fcbf9ce962ca48918d22cb7008bfa8",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/hooks/useAnnotationKeys.ts": {
+      "content_hash": "3245290307f6b5f55bd08734f947318e2a4d356db88d361edfd0bb7feb13bb28",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/hooks/useDrawing.ts": {
+      "content_hash": "f86ef204a16fb0159ff851e07bc8b96e070cb005ad468a40434b775f7c448499",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/hooks/useFileHandler.ts": {
+      "content_hash": "7ccf7ce10e7bc3d3cc01e471875506fd89c756fb1f6f9574a19406450194d4b5",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/hooks/usePdfRenderer.ts": {
+      "content_hash": "677fa713770eead6ddf3fc8927631981c60ae3c8d7b7b80b6569a974224fae01",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/hooks/useTextExtract.ts": {
+      "content_hash": "289a92306bd42928bf27540196c584f5633f17ce312a9d08ba90882a64af95a0",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/annotationSerializer.ts": {
+      "content_hash": "f464b1afa6003997b47374c6a16eb152907779e01ce3cc714355756109daa2a9",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/pageRange.ts": {
+      "content_hash": "0849d56ace1ade809d9c7474f622b768887f9eb7cd5d1efa192ad929b6fb47fc",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/pdfExport.ts": {
+      "content_hash": "e4dab36f3793cc1b879b33c76372ff3c737ba35fbf48b290906c860148ca4c81",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/pdfLoader.ts": {
+      "content_hash": "0b886f95fefd53bab02a55c1b1be831c1200a4e63c11396384d6c2b6073e06e7",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/pdfOperations.ts": {
+      "content_hash": "aef935a72513f7efd797afe18ee1d7595ca554204ab679459f6caf43167b9c4c",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/lib/textEditExport.ts": {
+      "content_hash": "9222c2d443987a0b58fc1b46cc69c75727ecad8fdefe5e078d9232fc46182d37",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/main.tsx": {
+      "content_hash": "dc3caf5760f907861c5bd3cef2038b7a2d040b7711cc511f099433da8c3f177a",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/store/useAnnotationStore.ts": {
+      "content_hash": "9262741a3dea1e11e4e8ae254deef48d1dd90bb59cb462c65fd5ed87cf6a3b57",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/store/usePdfStore.ts": {
+      "content_hash": "ded0ca65a2cf58e68f1a9dc9035da775357fc66b87e0877018f7f594ac808411",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/store/useTextEditStore.ts": {
+      "content_hash": "70cdfe8f4a767bf44b8920de1ca3005852b2bd9f1983f42a1ac533af90d67373",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/types/annotation.ts": {
+      "content_hash": "f7a0a12d4faf4fc910e4d01f4e79f90b19920849678b53d696dc9faa75afe782",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/types/pdf.ts": {
+      "content_hash": "e3f860d8a8f0b3553fd2ce0db237bea2cb5d9d145d1cc71e898a7103167c2e1c",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/types/textEdit.ts": {
+      "content_hash": "10be74dd472e8cc43e8ec796d47c4a5860431f9639b43eb008ee55efe687a0ba",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "src/utils/download.ts": {
+      "content_hash": "2d67436b822b35a943470a04f26c238ad37deb21496d9f6de823968b5e5f8d00",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    },
+    "vite.config.ts": {
+      "content_hash": "4d36db3522a7b2dd10e0936e1004373c7ee65f10f7cd7920cd76410459c15a45",
+      "last_indexed": "2026-05-07T10:49:24+00:00"
+    }
+  },
+  "grammar_versions": {
+    "javascript": "unknown",
+    "python": "unknown",
+    "rust": "unknown",
+    "typescript": "unknown"
+  },
+  "languages": [
+    "python",
+    "typescript",
+    "javascript",
+    "rust"
+  ],
+  "last_built": "2026-05-07T10:49:25+00:00"
+}
