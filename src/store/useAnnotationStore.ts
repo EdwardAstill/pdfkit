@@ -12,6 +12,13 @@ interface PageHistory {
   index: number;
 }
 
+/** An image picked from disk, waiting to be placed on a page */
+export interface PendingImage {
+  src: string; // PNG data URL
+  width: number; // natural pixel width
+  height: number; // natural pixel height
+}
+
 interface AnnotationStore {
   // Page shapes: Map<pageIndex, shapes[]>
   annotations: Map<number, AnnotationShape[]>;
@@ -20,11 +27,14 @@ interface AnnotationStore {
   selectedId: string | null;
   /** The actual display scale used by the viewer (fit-to-width) */
   renderScale: number;
+  /** Image picked but not yet placed — consumed by the next page click */
+  pendingImage: PendingImage | null;
 
   setActiveTool: (tool: AnnotationTool) => void;
   setStyle: (style: Partial<AnnotationStyle>) => void;
   setSelectedId: (id: string | null) => void;
   setRenderScale: (scale: number) => void;
+  setPendingImage: (image: PendingImage | null) => void;
 
   getPageShapes: (pageIndex: number) => AnnotationShape[];
   addShape: (pageIndex: number, shape: AnnotationShape) => void;
@@ -61,13 +71,21 @@ export const useAnnotationStore = create<AnnotationStore>((set, get) => ({
   style: { ...defaultStyle },
   selectedId: null,
   renderScale: 2,
+  pendingImage: null,
   _history: new Map(),
 
-  setActiveTool: (tool) => set({ activeTool: tool, selectedId: null }),
+  // Switching away from the image tool discards any unplaced image
+  setActiveTool: (tool) =>
+    set((state) => ({
+      activeTool: tool,
+      selectedId: null,
+      pendingImage: tool === "image" ? state.pendingImage : null,
+    })),
   setStyle: (partial) =>
     set((state) => ({ style: { ...state.style, ...partial } })),
   setSelectedId: (id) => set({ selectedId: id }),
   setRenderScale: (scale) => set({ renderScale: scale }),
+  setPendingImage: (image) => set({ pendingImage: image }),
 
   getPageShapes: (pageIndex) => get().annotations.get(pageIndex) ?? [],
 

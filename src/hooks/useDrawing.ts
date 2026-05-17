@@ -38,7 +38,7 @@ export function useDrawing(pageIndex: number) {
   const handleDrawStart = useCallback(
     (pos: { x: number; y: number }) => {
       const tool = store.getState().activeTool;
-      if (tool === "select" || tool === "text") return false;
+      if (tool === "select" || tool === "text" || tool === "image") return false;
 
       drawingRef.current = true;
       startRef.current = { x: pos.x, y: pos.y };

@@ -149,11 +149,44 @@ export function AnnotationLayer({ pageIndex, width, height }: Props) {
         return;
       }
 
+      // Image mode: click to drop the picked image, centred on the cursor
+      if (tool === "image") {
+        const pending = store.getState().pendingImage;
+        if (!pending) return;
+        const pos = e.target.getStage()!.getPointerPosition()!;
+
+        // Fit within ~45% of page width and ~60% of page height
+        let w = pending.width;
+        let h = pending.height;
+        const fit = Math.min(1, (width * 0.45) / w, (height * 0.6) / h);
+        w *= fit;
+        h *= fit;
+
+        const id = newShapeId();
+        store.getState().addShape(pageIndex, {
+          id,
+          type: "image",
+          x: pos.x - w / 2,
+          y: pos.y - h / 2,
+          width: w,
+          height: h,
+          src: pending.src,
+          stroke: "transparent",
+          strokeWidth: 0,
+          fill: "transparent",
+        });
+        store.getState().pushHistory(pageIndex);
+        store.getState().setPendingImage(null);
+        store.getState().setActiveTool("select");
+        store.getState().setSelectedId(id);
+        return;
+      }
+
       // Shape drawing
       const pos = e.target.getStage()!.getPointerPosition()!;
       handleDrawStart(pos);
     },
-    [pageIndex, handleDrawStart, startTextEdit]
+    [pageIndex, width, height, handleDrawStart, startTextEdit]
   );
 
   const handleMouseMove = useCallback(
@@ -210,6 +243,10 @@ export function AnnotationLayer({ pageIndex, width, height }: Props) {
         case "text":
           updates.fontSize = Math.max(8, (shape as { fontSize: number }).fontSize * scaleY);
           updates.width = node.width() * scaleX;
+          break;
+        case "image":
+          updates.width = Math.max(5, node.width() * scaleX);
+          updates.height = Math.max(5, node.height() * scaleY);
           break;
       }
 

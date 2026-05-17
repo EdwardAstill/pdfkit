@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import { useAnnotationStore } from "../../store/useAnnotationStore";
+import { loadImageFile } from "../../lib/imageImport";
 import type { AnnotationTool } from "../../types/annotation";
-import type { ReactElement } from "react";
+import type { ReactElement, ChangeEvent } from "react";
 
 const tools: { id: AnnotationTool; label: string; icon: ReactElement }[] = [
   {
@@ -60,11 +62,47 @@ const tools: { id: AnnotationTool; label: string; icon: ReactElement }[] = [
       </svg>
     ),
   },
+  {
+    id: "image",
+    label: "Image (I)",
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="5" cy="5.5" r="1.2" fill="currentColor" />
+        <path d="M2 10L5.5 6.5L8 9L10 7.5L12.5 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export function AnnotationToolbar() {
   const activeTool = useAnnotationStore((s) => s.activeTool);
   const setActiveTool = useAnnotationStore((s) => s.setActiveTool);
+  const setPendingImage = useAnnotationStore((s) => s.setPendingImage);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Image tool: open the file picker. On choosing a file we stash the
+  // decoded image and arm the image tool — the next page click places it.
+  const handleImageFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // allow re-picking the same file
+    if (!file) return;
+    try {
+      const pending = await loadImageFile(file);
+      setPendingImage(pending);
+      setActiveTool("image");
+    } catch (err) {
+      window.alert(`Could not load image: ${(err as Error).message}`);
+    }
+  };
+
+  const handleToolClick = (tool: AnnotationTool) => {
+    if (tool === "image") {
+      fileInputRef.current?.click();
+    } else {
+      setActiveTool(tool);
+    }
+  };
 
   return (
     <div
@@ -118,12 +156,19 @@ export function AnnotationToolbar() {
         RESET
       </button>
       <div style={{ width: 1, height: 16, background: "var(--line)", margin: "0 2px", flexShrink: 0 }} />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageFile}
+        style={{ display: "none" }}
+      />
       {tools.map((t) => {
         const isActive = activeTool === t.id;
         return (
           <button
             key={t.id}
-            onClick={() => setActiveTool(t.id)}
+            onClick={() => handleToolClick(t.id)}
             title={t.label}
             style={{
               width: 30,

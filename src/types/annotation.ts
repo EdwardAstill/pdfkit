@@ -4,7 +4,8 @@ export type AnnotationTool =
   | "circle"
   | "line"
   | "arrow"
-  | "text";
+  | "text"
+  | "image";
 
 export interface AnnotationStyle {
   strokeColor: string;
@@ -15,7 +16,7 @@ export interface AnnotationStyle {
 }
 
 // Shape types stored per page
-export type ShapeType = "rect" | "ellipse" | "line" | "arrow" | "text";
+export type ShapeType = "rect" | "ellipse" | "line" | "arrow" | "text" | "image";
 
 export interface BaseShape {
   id: string;
@@ -58,9 +59,18 @@ export interface TextShape extends BaseShape {
   width?: number;
 }
 
+export interface ImageShape extends BaseShape {
+  type: "image";
+  width: number;
+  height: number;
+  /** PNG data URL — all picked images are normalised to PNG on import */
+  src: string;
+}
+
 export type AnnotationShape =
   | RectShape
   | EllipseShape
   | LineShape
   | ArrowShape
-  | TextShape;
+  | TextShape
+  | ImageShape;

@@ -1,9 +1,10 @@
 import {
   rgb,
+  degrees,
   type PDFPage,
   type PDFDocument,
 } from "pdf-lib";
-import type { AnnotationShape } from "../types/annotation";
+import type { AnnotationShape, ImageShape } from "../types/annotation";
 
 function hexToRgbArray(hex: string): [number, number, number] {
   const h = hex.replace("#", "");
@@ -12,6 +13,52 @@ function hexToRgbArray(hex: string): [number, number, number] {
     parseInt(h.slice(2, 4), 16) / 255,
     parseInt(h.slice(4, 6), 16) / 255,
   ];
+}
+
+/** Decode an image data URL into a pdf-lib embedded image. */
+async function embedDataUrl(doc: PDFDocument, src: string) {
+  const comma = src.indexOf(",");
+  const meta = src.slice(0, comma);
+  const binary = atob(src.slice(comma + 1));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return /image\/jpe?g/.test(meta)
+    ? doc.embedJpg(bytes)
+    : doc.embedPng(bytes);
+}
+
+/**
+ * Draw an image shape into a page's content stream.
+ *
+ * Konva places the image by its top-left corner (screen coords, y-down)
+ * and rotates clockwise about that corner. pdf-lib draws up-right from an
+ * anchor (page coords, y-up) and rotates about it. We pin the rotation
+ * pivot to the top-left corner by offsetting the anchor accordingly.
+ */
+async function drawImageShape(
+  page: PDFPage,
+  shape: ImageShape,
+  scale: number,
+  pageH: number,
+  doc: PDFDocument,
+) {
+  const img = await embedDataUrl(doc, shape.src);
+  const w = shape.width / scale;
+  const h = shape.height / scale;
+  const deg = shape.rotation ?? 0;
+  const rad = (deg * Math.PI) / 180;
+
+  // Top-left corner of the image, in PDF (y-up) coordinates
+  const px = shape.x / scale;
+  const py = pageH - shape.y / scale;
+
+  page.drawImage(img, {
+    x: px - h * Math.sin(rad),
+    y: py - h * Math.cos(rad),
+    width: w,
+    height: h,
+    rotate: degrees(-deg),
+  });
 }
 
 /**
@@ -33,7 +80,13 @@ export async function drawAnnotationsOnPage(
   const pageH = page.getHeight();
 
   for (const shape of shapes) {
-    addAnnotation(page, shape, scale, pageH, ctx);
+    // Images have no native PDF annotation type — bake them into the
+    // content stream even in "annotate" mode.
+    if (shape.type === "image") {
+      await drawImageShape(page, shape, scale, pageH, doc);
+    } else {
+      addAnnotation(page, shape, scale, pageH, ctx);
+    }
   }
 }
 
@@ -176,6 +229,11 @@ export async function flattenAnnotationsOnPage(
   const font = await doc.embedFont("Helvetica" as never);
 
   for (const shape of shapes) {
+    if (shape.type === "image") {
+      await drawImageShape(page, shape, scale, pageH, doc);
+      continue;
+    }
+
     const strokeColor =
       shape.stroke && shape.stroke !== "transparent"
         ? rgb(...hexToRgbArray(shape.stroke))

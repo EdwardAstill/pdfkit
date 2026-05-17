@@ -1,6 +1,43 @@
-import { Rect, Ellipse, Line, Arrow, Text } from "react-konva";
+import { useState, useEffect } from "react";
+import { Rect, Ellipse, Line, Arrow, Text, Image as KonvaImage } from "react-konva";
 import type Konva from "konva";
-import type { AnnotationShape, AnnotationTool } from "../../types/annotation";
+import type { AnnotationShape, AnnotationTool, ImageShape } from "../../types/annotation";
+
+/**
+ * Konva needs a loaded HTMLImageElement, so image rendering lives in its
+ * own component — hooks can't run conditionally inside the switch below.
+ */
+function ImageShapeNode({
+  shape,
+  common,
+}: {
+  shape: ImageShape;
+  common: Record<string, unknown>;
+}) {
+  const [img, setImg] = useState<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    const image = new window.Image();
+    image.onload = () => setImg(image);
+    image.src = shape.src;
+    return () => {
+      image.onload = null;
+    };
+  }, [shape.src]);
+
+  if (!img) return null;
+
+  return (
+    <KonvaImage
+      {...common}
+      x={shape.x}
+      y={shape.y}
+      width={shape.width}
+      height={shape.height}
+      image={img}
+    />
+  );
+}
 
 interface Props {
   shape: AnnotationShape;
@@ -124,6 +161,8 @@ export function ShapeRenderer({
           onDblTap={() => onTextDblClick(shape.id, shape)}
         />
       );
+    case "image":
+      return <ImageShapeNode shape={shape} common={common} />;
     default:
       return null;
   }
